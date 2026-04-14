@@ -1,0 +1,36 @@
+services:
+
+  app:
+    build: . 
+    container_name: App-Tela-Login-Proxy
+    ports:
+      - "8082:80" 
+    volumes:
+      - .:/var/www/html # <-- MUDANÇA AQUI: O ponto (.) indica que é para copiar a pasta atual inteira
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    container_name: SQL-Tela-Login-Proxy
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: db_login
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 123
+    ports:
+      - "3306:3306"
+    volumes:
+      - tela_login_dados:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin-tela-login-proxy
+    environment:
+      PMA_HOST: db
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+
+volumes:
+  tela_login_dados:
