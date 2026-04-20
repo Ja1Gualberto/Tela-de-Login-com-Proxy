@@ -18,20 +18,29 @@
 
             <div class="card-body p-4">
                 <form action="#" method="POST">
-
+                  @csrf
                     <div class="mb-3">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome completo" required>
+                        <input type="text" class="form-control" id="nome" name="name" placeholder="Digite seu nome completo" required>
+                        @error('name')
+                          <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
                         <label for="email" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="nome@exemplo.com" required>
+                        @error('email')
+                          <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label for="senha" class="form-label">Senha</label>
-                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Crie uma senha" required>
+                        <input type="password" class="form-control" id="senha" name="password" placeholder="Crie uma senha" required>
+                        @error('password')
+                          <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <button type="submit" class="btn btn-primary w-100 fs-5">Cadastrar</button>

@@ -10,47 +10,48 @@
 </head>
 <body class="bg-info">
 
-    <div class="container">
-        <div class="row justify-content-center align-items-center vh-100">
-            <div class="col-md-6 col-lg-4">
+  <div class="container">
+    <div class="row justify-content-center align-items-center vh-100">
+      <div class="col-md-6 col-lg-4">
 
-                <div class="card shadow-sm">
-                    <div class="card-body p-4">
-                        <h3 class="text-center mb-4">Login</h3>
+        <div class="card shadow-sm">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4">Login</h3>
 
-                        <form>
-                            <div class="mb-3">
-                                <label for="emailInput" class="form-label">E-mail</label>
-                                <input type="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com" required>
-                            </div>
+            <form action="{{ route('login.submit') }}" method="POST">
+              @csrf
 
-                            <div class="mb-3">
-                                <label for="senhaInput" class="form-label">Senha</label>
-                                <input type="password" class="form-control" id="senhaInput" placeholder="Sua senha" required>
-                            </div>
+              <div class="mb-3">
+                <label for="emailInput" class="form-label">E-mail</label>
+                <input type="email" name="email" class="form-control" id="emailInput" placeholder="nome@exemplo.com" required>
 
-                            <div class="mb-3 form-check">
-                                <input type="checkbox" class="form-check-input" id="lembrarCheck">
-                                <label class="form-check-label" for="lembrarCheck">Lembrar de mim</label>
-                            </div>
+                @error('email')
+                  <div class="text-danger mt-1">{{ $message }}</div>
+                @enderror
+              </div>
 
-                            <div class="d-grid mb-2">
-                                <button type="submit" class="btn btn-primary">Entrar</button>
-                            </div>
+              <div class="mb-3">
+                <label for="senhaInput" class="form-label">Senha</label>
+                <input type="password" name="password" class="form-control" id="senhaInput" placeholder="Sua senha" required>
+              </div>
 
-                            <div class="">
-                                <label for="">
-                                    Não possui conta <a href="{{ asset('cadastro') }}">cadastre-se</a>
-                                </label>
-                            </div>
-                        </form>
+              <div class="d-grid mb-2">
+                <button type="submit" class="btn btn-primary">Entrar</button>
+              </div>
 
-                    </div>
-                </div>
+              <div class="">
+                <label for="">
+                  Não possui conta <a href="{{ route('cadastro') }}">cadastre-se</a>
+                </label>
+              </div>
+            </form>
 
-            </div>
+          </div>
         </div>
+
+      </div>
     </div>
+  </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
