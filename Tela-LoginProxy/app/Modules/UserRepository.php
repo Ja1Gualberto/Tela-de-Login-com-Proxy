@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Modules;
+namespace App\Modules ;
 
 use App\Models\User as ModelsUser;
 

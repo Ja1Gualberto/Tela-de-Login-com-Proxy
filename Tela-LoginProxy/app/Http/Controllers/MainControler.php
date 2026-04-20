@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use App\Modules\UserService;
+use App\Modules\UserServiceProxy;
 use Illuminate\Http\Request;
 
 class MainControler extends Controller {
@@ -12,15 +13,14 @@ class MainControler extends Controller {
 
   public function __construct(UserService $userService)
   {
-    // Agora sim a variável da classe recebe o que foi injetado
-    $this->userService = $userService;
+    $this->userService = new UserServiceProxy($userService);
   }
 
   public function home() {
     return  view('home');
   }
 
-  public function login() {
+  public function showLoginForm() {
     return view('login');
   }
 
@@ -28,7 +28,7 @@ class MainControler extends Controller {
     return view('cadastro');
   }
 
-  public function authenticate(Request $request) {
+  public function login(Request $request) {
     $credenciais = $request->validate([
       'email' => ['required', 'email'],
       'password' => ['required'],
@@ -39,9 +39,30 @@ class MainControler extends Controller {
 
       return redirect()->intended('/home');
     }
+
     return redirect()->back()->withErrors([
       'email' => 'As credenciais fornecidadas estão erradas'
     ])->onlyInput('email');
   }
 
+  public function logout(Request $request) {
+    $this->userService->logout();
+
+    $request->session()->invalidate();
+    $request->session()->regenerateToken();
+
+    return redirect('/');
+  }
+
+  public function cadastrarSubmit(Request $request) {
+    $request->validate([
+      'name'     => 'required|string|max:255',
+      'email'    => 'required|email|unique:users,email',
+      'password' => 'required',
+    ]);
+
+    $this->userService->register($request->only('name','email', 'password'));
+
+    return redirect()->route('login')->with('success', 'Conta criada! Faça login.');
+  }
 }
