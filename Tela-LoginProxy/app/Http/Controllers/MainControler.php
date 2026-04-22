@@ -21,19 +21,19 @@ class MainControler extends Controller {
   }
 
   public function showLoginFormSemProxy() {
-    return view('login-sem-proxy');
+    return view('Sem-Proxy.login-sem-proxy');
   }
 
   public function showLoginForm() {
-    return view('login');
+    return view('Com-Proxy.login');
   }
 
   public function cadastrarSemProxy() {
-    return view('cadastro-sem-proxy');
+    return view('Sem-Proxy.cadastro-sem-proxy');
   }
 
   public function cadastrar() {
-    return view('cadastro');
+    return view('Com-Proxy.cadastro');
   }
 
   public function login(Request $request) {
