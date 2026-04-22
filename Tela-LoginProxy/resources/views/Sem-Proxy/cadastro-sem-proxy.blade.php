@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Cadastro</title>
+    <title>Cadastro Sem Proxy</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body class="bg-light">
@@ -13,7 +13,7 @@
 
         <div class="card shadow" style="width: 100%; max-width: 450px;">
             <div class="card-header text-center bg-primary text-white py-3">
-                <h4 class="mb-0">Criar Conta</h4>
+                <h4 class="mb-0">Criar Conta Sem Proxy</h4>
             </div>
 
             <div class="card-body p-4">

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Login</title>
+    <title>Login Sem Proxy</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
@@ -16,7 +16,7 @@
 
         <div class="card shadow-sm">
           <div class="card-body p-4">
-            <h3 class="text-center mb-4">Login</h3>
+            <h3 class="text-center mb-4">Login Sem Proxy</h3>
 
             <form action="{{ route('login.submit') }}" method="POST">
               @csrf
@@ -32,7 +32,7 @@
 
               <div class="mb-3">
                 <label for="senhaInput" class="form-label">Senha</label>
-                <input type="password" name="password" class="form-control" id="senhaInput" placeholder="Sua senha" required>
+                <input type="password" name="senha" class="form-control" id="senhaInput" placeholder="Sua senha" required>
               </div>
 
               <div class="d-grid mb-2">
@@ -41,7 +41,7 @@
 
               <div class="">
                 <label for="">
-                  Não possui conta <a href="{{ route('cadastro') }}">cadastre-se</a>
+                  Não possui conta <a href="{{ route('cadastro-sem-proxy') }}">cadastre-se</a>
                 </label>
               </div>
             </form>

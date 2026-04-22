@@ -20,8 +20,16 @@ class MainControler extends Controller {
     return  view('home');
   }
 
+  public function showLoginFormSemProxy() {
+    return view('login-sem-proxy');
+  }
+
   public function showLoginForm() {
     return view('login');
+  }
+
+  public function cadastrarSemProxy() {
+    return view('cadastro-sem-proxy');
   }
 
   public function cadastrar() {
