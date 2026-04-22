@@ -7,11 +7,13 @@ use Illuminate\Support\Facades\Log;
 class UserServiceProxy {
   protected UserService $userService;
 
+  //? Construct que acessa as ações da service real
   public function __construct(UserService $userService)
   {
     $this->userService = $userService;
   }
 
+  //? Usa a função de login da service principal e faz o log
   public function login(array $credenciais): bool {
     Log::info('Tentativa de login', ['email' => $credenciais['email']]);
 
@@ -29,6 +31,7 @@ class UserServiceProxy {
     Log::info('Usuario fez logout');
   }
 
+  //? Usa a função de registrar  da service principal e faz o log
   public function register(array $dados) {
     Log::info('Tentativa de cadastro', ['email' => $dados['email']]);
 
