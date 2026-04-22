@@ -8,8 +8,21 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService {
 
+  protected UserRepository $userRepository;
+
+  public function __construct(UserRepository $userRepository)
+  {
+    $this->userRepository = $userRepository;
+  }
+
   public function login(array $credenciais) {
-    if (Auth::attempt($credenciais)) {
+
+    //? Chama a função da repository e salva o retorno em uma variavel
+    $usuario = $this->userRepository->findBYEmail($credenciais['email']);
+
+    //? Hash a senha informada no input de login e compara com o objeto retornado pelo banco
+    if ($usuario && Hash::check($credenciais['password'], $usuario->password)) {
+      Auth::login($usuario);
       return true;
     }
     return false;
@@ -20,10 +33,6 @@ class UserService {
   }
 
   public function register(array $dados) {
-    return User::create([
-      'name'    => $dados['name'],
-      'email'   => $dados['email'],
-      'password'=> Hash::make($dados['password']),
-    ]);
+    return $this->userRepository->criaUser($dados);
   }
 }
